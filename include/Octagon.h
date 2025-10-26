@@ -43,7 +43,7 @@ public:
         return *this;
     }
 
-    // Конструктор перемещения
+
     Octagon(Octagon &&other) noexcept
     {
         for (int i = 0; i < 8; ++i)
@@ -52,7 +52,7 @@ public:
         }
     }
 
-    // Оператор присваивания перемещением
+
     Octagon &operator=(Octagon &&other) noexcept
     {
         if (this != &other)

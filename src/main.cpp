@@ -7,7 +7,6 @@
 #include <memory>
 #include <iostream>
 
-// Прототипы функций из geometry_functions.cpp
 template <typename T>
 double calculate_total_area(const Array<std::shared_ptr<Figure<T>>> &figures);
 
@@ -25,14 +24,12 @@ void demonstrate_figures()
     std::cout << "t - triangle\n";
     std::cout << "q - quit input\n\n";
 
-    // Вывод всех фигур
     char choice;
     while (std::cin >> choice)
     {
         if (choice == 'q')
             break;
 
-        // Figure *newFig = nullptr;
         auto hexagon = std::make_shared<Hexagon<double>>();
         auto octagon = std::make_shared<Octagon<double>>();
         auto triangle = std::make_shared<Triangle<double>>();
@@ -65,10 +62,8 @@ void demonstrate_figures()
     }
     print_all_figures(figures);
 
-    // Вычисление общей площади
     std::cout << "Total area: " << calculate_total_area(figures) << std::endl;
 
-    // Демонстрация удаления фигуры
     if (figures.length() > 0){
         std::cout << "\n=== After removing first figure ===" << std::endl;
     figures.erase(0);
@@ -82,7 +77,6 @@ void demonstrate_array_with_base_type()
     std::cout << "\n=== Array<Figure<int>*> Demo ===" << std::endl;
     Array<Figure<int> *> base_figures;
 
-    // Создание и добавление фигур
     auto *hex = new Hexagon<int>();
     std::cout << "Enter Hexagon points:" << std::endl;
     std::cin >> *hex;
@@ -93,14 +87,12 @@ void demonstrate_array_with_base_type()
     std::cin >> *tri;
     base_figures.push_back(tri);
 
-    // Вывод
     for (size_t i = 0; i < base_figures.size(); ++i)
     {
         base_figures[i]->print(std::cout);
         std::cout << std::endl;
     }
 
-    // Очистка памяти
     for (size_t i = 0; i < base_figures.size(); ++i)
     {
         delete base_figures[i];
@@ -112,12 +104,10 @@ void demonstrate_array_with_derived_type()
     std::cout << "\n=== Array<Hexagon<double>> Demo ===" << std::endl;
     Array<Hexagon<double>> hex_array;
 
-    // Используем временный объект для демонстрации перемещения
     Hexagon<double> hex;
     std::cout << "Enter Hexagon points:" << std::endl;
     std::cin >> hex;
 
-    // Используем перемещение вместо копирования
     hex_array.push_back(std::move(hex));
 
     std::cout << hex_array;

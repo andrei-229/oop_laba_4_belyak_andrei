@@ -31,7 +31,6 @@ public:
         }
     }
 
-    // Оператор присваивания копированием
     Triangle &operator=(const Triangle &other)
     {
         if (this != &other)
@@ -44,7 +43,6 @@ public:
         return *this;
     }
 
-    // Конструктор перемещения
     Triangle(Triangle &&other) noexcept
     {
         for (int i = 0; i < 3; ++i)
@@ -53,7 +51,6 @@ public:
         }
     }
 
-    // Оператор присваивания перемещением
     Triangle &operator=(Triangle &&other) noexcept
     {
         if (this != &other)

@@ -12,11 +12,10 @@ class Array
 
     void resize(size_t new_capacity)
     {
-        // Используем new вместо make_shared для массивов
         std::unique_ptr<T[]> new_data(new T[new_capacity]);
         for (size_t i = 0; i < _size; ++i)
         {
-            new_data[i] = std::move(data[i]); // Используем перемещение
+            new_data[i] = std::move(data[i]);
         }
         data = std::move(new_data);
         _capacity = new_capacity;
@@ -30,7 +29,7 @@ public:
         data = std::unique_ptr<T[]>(new T[_capacity]);
         for (size_t i = 0; i < _size; ++i)
         {
-            data[i] = other.data[i]; // Копируем элементы
+            data[i] = other.data[i];
         }
     }
 
@@ -73,14 +72,14 @@ public:
     {
         if (_size == _capacity)
             resize(_capacity ? _capacity * 2 : 1);
-        data[_size++] = value; // Копирование
+        data[_size++] = value;
     }
 
     void push_back(T &&value)
     {
         if (_size == _capacity)
             resize(_capacity ? _capacity * 2 : 1);
-        data[_size++] = std::move(value); // Перемещение
+        data[_size++] = std::move(value);
     }
 
     void erase(size_t index)
@@ -89,7 +88,7 @@ public:
             throw std::out_of_range("Index out of range");
         for (size_t i = index; i < _size - 1; ++i)
         {
-            data[i] = std::move(data[i + 1]); // Используем перемещение
+            data[i] = std::move(data[i + 1]);
         }
         --_size;
     }
@@ -119,7 +118,6 @@ public:
         _capacity = 0;
     }
 
-    // Перегрузка оператора вывода для массива
     friend std::ostream &operator<<(std::ostream &os, const Array<T> &arr)
     {
         os << "Array[" << arr._size << "]:\n";

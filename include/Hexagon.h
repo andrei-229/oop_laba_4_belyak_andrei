@@ -24,7 +24,6 @@ public:
             vertices[i] = std::make_unique<Point<T>>(points[i]);
     }
 
-    // Конструктор копирования
     Hexagon(const Hexagon &other) : Hexagon()
     {
         for (int i = 0; i < 6; ++i)
@@ -33,7 +32,6 @@ public:
         }
     }
 
-    // Оператор присваивания копированием
     Hexagon &operator=(const Hexagon &other)
     {
         if (this != &other)
@@ -46,7 +44,6 @@ public:
         return *this;
     }
 
-    // Конструктор перемещения
     Hexagon(Hexagon &&other) noexcept
     {
         for (int i = 0; i < 6; ++i)
@@ -55,7 +52,6 @@ public:
         }
     }
 
-    // Оператор присваивания перемещением
     Hexagon &operator=(Hexagon &&other) noexcept
     {
         if (this != &other)
